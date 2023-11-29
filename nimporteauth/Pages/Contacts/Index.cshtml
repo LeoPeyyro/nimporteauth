@@ -1,13 +1,35 @@
 ﻿@page
 @model nimporteauth.Pages.Contacts.IndexModel
+@using nimporteauth.Pages.Shared
 
 @{
     ViewData["Title"] = "Index";
     int numPage = (int)ViewData["NumPage"];
     int totalPages = (int)ViewData["TotalPages"];
+    var fitlerModels = new List<FilterHeaderPartialModel>()
+    {
+        new FilterHeaderPartialModel(){
+            Name = "Prénom",
+                SortProperty = "prenom"
+        },
+        new FilterHeaderPartialModel(){
+            Name = "Nom",
+                SortProperty = "nom"
+        },
+        new FilterHeaderPartialModel(){
+            Name = "Email",
+                SortProperty = "email"
+        },
+        new FilterHeaderPartialModel(){
+            Name = "Pro",
+                SortProperty = "estPro"
+        },
+        new FilterHeaderPartialModel(){
+            Name = "Groupe",
+                SortProperty = "groupe"
+        },
+    };
 }
-
-<h1>Index</h1>
 
 @if (totalPages > 1)
 {
@@ -39,6 +61,7 @@
     <thead>
         <tr>
             <th>
+                <partial name="FilterHeaderPartial" model="null"></partial>
                 <a asp-route-orderByColumn="prenom">@Html.DisplayNameFor(model => model.Contact[0].prenom)</a>
             </th>
             <th>
@@ -51,7 +74,7 @@
                 <a asp-route-orderByColumn="estPro">@Html.DisplayNameFor(model => model.Contact[0].estPro)</a>
             </th>
             <th>
-                 <a asp-route-orderByColumn="groupe">@Html.DisplayNameFor(model => model.Contact[0].groupe)</a> 
+                 <a asp-route-orderByColumn="groupe">@Html.DisplayNameFor(model => model.Contact[0].contactGroupes)</a> 
             </th>
             <th></th>
         </tr>
@@ -72,7 +95,7 @@
                 @Html.DisplayFor(modelItem => item.estPro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.groupe.nom)
+                @Html.DisplayFor(modelItem => item.contactGroupes) <!-- Avant : groupe.nom à corriger je pense -->
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

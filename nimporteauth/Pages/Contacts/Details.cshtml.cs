@@ -24,7 +24,7 @@ namespace nimporteauth.Pages.Contacts
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             IQueryable<Contact> query = _context.Contact
-                .Include(x => x.groupe);
+                .Include(x => x.contactGroupes);
 
             if (id == null || _context.Contact == null)
             {

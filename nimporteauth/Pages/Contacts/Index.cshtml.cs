@@ -41,15 +41,15 @@ namespace nimporteauth.Pages.Contacts
             if (_context.Contact != null)
             {
                 IQueryable<Contact> query = _context.Contact
-                    .Include(x => x.groupe);
+                    .Include(x => x.contactGroupes);
 
                 if (WithoutGroupOnly)
                 {
-                    query = query.Where(x => x.groupe == null);
+                    query = query.Where(x => x.contactGroupes == null);
                 }
                 if (GroupId != null)
                 {
-                    query = query.Where(x => x.groupe.Id == GroupId); //.OrderBy(_context.Cont);
+                    //query = query.Where(x => x.Groupe.Id == GroupId); //.OrderBy(_context.Cont); aucune idée
                 }
                 //query = query.OrderBy(x => x.prenom);
                 query = ApplyOrderBy(query, orderByColumn);
@@ -75,8 +75,7 @@ namespace nimporteauth.Pages.Contacts
                 case "estPro":
                     return query.OrderBy(x => x.estPro);
                 case "groupe":
-                    return query.OrderBy(x => x.groupe.nom); // Remplacez par la propriété appropriée du groupe
-                                                             // Ajoutez d'autres cas pour d'autres colonnes si nécessaire
+                    return query.OrderBy(x => x.contactGroupes); // TODO: groupe.nom à corriger
                 default:
                     return query; // Aucun tri par défaut
             }

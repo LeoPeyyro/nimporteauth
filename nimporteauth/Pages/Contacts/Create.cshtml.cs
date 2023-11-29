@@ -18,7 +18,7 @@ namespace nimporteauth.Pages.Contacts
         {
             _context = context;
 
-            GroupList = new SelectList(context.Groupe.ToList(), "Id", nameof(Groupe.nom));
+            GroupList = new SelectList(context.Groupe.ToList(), "Id", nameof(Groupe.nom)); // ici ?
         }
 
         public IActionResult OnGet()
