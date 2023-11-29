@@ -1,0 +1,52 @@
+﻿@page
+@model nimporteauth.Pages.Contacts.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.prenom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.prenom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.nom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.estPro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.estPro)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.groupe.nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.groupe.nom)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Contact.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+﻿@page
+@model nimporteauth.Pages.Contacts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.prenom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.prenom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.nom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.estPro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.estPro)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact.groupe.nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact.groupe.nom)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Contact?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

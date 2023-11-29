@@ -1,0 +1,85 @@
+﻿@page
+@model nimporteauth.Pages.Contacts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    int numPage = (int)ViewData["NumPage"];
+    int totalPages = (int)ViewData["TotalPages"];
+}
+
+<h1>Index</h1>
+
+@if (totalPages > 1)
+{
+    <ul class="pagination">
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == numPage ? "active" : "")">
+                <a class="page-link" asp-route-numPage="@i">@i</a>
+            </li>
+        }
+    </ul>
+}
+
+<form method="get">
+    <input asp-for="WithoutGroupOnly" /> Contacts avec aucun groupe </br>
+    <div class="form-group">
+        <label asp-for="GroupId" class="control-label">Groupe</label>
+
+        <select asp-for="GroupId" asp-items="Model.GroupList" class="form-control">
+            <option value="">Sélectionnez un groupe</option>
+        </select>
+    </div>
+    <input type="submit" value="rechercher" />
+</form>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-orderByColumn="prenom">@Html.DisplayNameFor(model => model.Contact[0].prenom)</a>
+            </th>
+            <th>
+                <a asp-route-orderByColumn="nom">@Html.DisplayNameFor(model => model.Contact[0].nom)</a>
+            </>
+            <th>
+                <a asp-route-orderByColumn="email">@Html.DisplayNameFor(model => model.Contact[0].email)</a>
+            </>
+            <th>
+                <a asp-route-orderByColumn="estPro">@Html.DisplayNameFor(model => model.Contact[0].estPro)</a>
+            </th>
+            <th>
+                 <a asp-route-orderByColumn="groupe">@Html.DisplayNameFor(model => model.Contact[0].groupe)</a> 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Contact) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.groupe.nom)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
